@@ -26,11 +26,13 @@ router.get('/new', function(req, res, next) {
 
 // POST New message page
 router.post('/new', function(req, res, next) {
-  messages.push({
-    text: req.body.message,
-    user: req.body.name || "Anonymous",
-    added: new Date().toLocaleTimeString()
-  });
+  if (req.body.message !== '') {
+    messages.push({
+      text: req.body.message,
+      user: req.body.name || "Anonymous",
+      added: new Date().toLocaleTimeString()
+    });
+  }
   res.redirect('/');
 });
 
