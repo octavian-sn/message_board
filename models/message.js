@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const MessageSchema = new mongoose.Schema({
   text: String,
   user: String,
-  added: Date,
+  added: String,
 });
 
 // Export model

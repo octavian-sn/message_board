@@ -25,13 +25,21 @@ router.get('/new', function(req, res, next) {
 });
 
 // POST New message page
-router.post('/new', function(req, res, next) {
+router.post('/new', async function(req, res, next) {
+  const Message = require("../models/message");
+
   if (req.body.message !== '') {
-    messages.push({
+    const newMessage = new Message({
       text: req.body.message,
       user: req.body.name || "Anonymous",
       added: new Date().toLocaleTimeString()
-    });
+    })
+    
+    try{
+      await newMessage.save();
+    } catch (err){
+      console.log(`Message not added, check error: \n ${err}`)
+    }
   }
   res.redirect('/');
 });
