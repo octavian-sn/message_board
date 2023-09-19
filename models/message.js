@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
-
-const MessageSchema = new Schema({
+// Create schema
+const MessageSchema = new mongoose.Schema({
   text: String,
   user: String,
   added: Date,
